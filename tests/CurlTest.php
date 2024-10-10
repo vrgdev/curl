@@ -2,7 +2,6 @@
 
 use PHPUnit\Framework\TestCase;
 use VrgDev\Curl\Curl;
-use VrgDev\Curl\Exception\CurlException;
 
 class CurlTest extends TestCase
 {
@@ -36,7 +35,7 @@ class CurlTest extends TestCase
 
     public function testExec(): void
     {
-        $this->expectException(CurlException::class);
+        $this->expectException(\Exception::class);
 
         $this->curl->exec();
     }

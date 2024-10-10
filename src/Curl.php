@@ -2,10 +2,7 @@
 
 namespace VrgDev\Curl;
 
-use VrgDev\Curl\CurlInterface;
-use VrgDev\Curl\Exception\CurlException;
-
-class Curl implements CurlInterface
+class Curl
 {
     private \CurlHandle $handle;
 
@@ -19,7 +16,7 @@ class Curl implements CurlInterface
         $handle = curl_init();
 
         if ($handle === false) {
-            throw new CurlException('Unable to initialize!');
+            throw new \Exception('Unable to initialize!');
         }
 
         $this->handle = $handle;
@@ -30,7 +27,7 @@ class Curl implements CurlInterface
         $setOpt = curl_setopt($this->handle, $option, $value);
 
         if ($setOpt === false) {
-            throw new CurlException('Unable to set option!');
+            throw new \Exception('Unable to set option!');
         }
     }
 
@@ -39,7 +36,7 @@ class Curl implements CurlInterface
         $setOpt = curl_setopt_array($this->handle, $options);
 
         if ($setOpt === false) {
-            throw new CurlException('Unable to set options!');
+            throw new \Exception('Unable to set options!');
         }
     }
 
@@ -48,7 +45,7 @@ class Curl implements CurlInterface
         $response = curl_exec($this->handle);
 
         if ($response === false) {
-            throw new CurlException('Unable to execute!');
+            throw new \Exception('Unable to execute!');
         }
 
         return $response;
@@ -59,7 +56,7 @@ class Curl implements CurlInterface
         $info = curl_getinfo($this->handle, $option);
 
         if ($info === false) {
-            throw new CurlException('Unable to get info!');
+            throw new \Exception('Unable to get info!');
         }
 
         return $info;
